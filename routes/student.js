@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const Student = require('../models/student');
 
@@ -59,8 +60,56 @@ router.post('/edit/:email', async (req, res) => {
         student.email = email;
         student.phone = phone;
         student.degree = degree;
+        student.photo = photo;
         await student.save();
         res.status(200).json({ error: false, student })
+    } catch (e) {
+        res.status(400).json({ error: true, msg: String(e) })
+    }
+})
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../public/profilePhotos'))
+    },
+    filename: function (req, file, cb) {
+        let fragments = file.originalname.split('.');
+        const extension = fragments.splice(-1)[0];
+
+        cb(null, mongoose.Types.ObjectId() + '.' + extension);
+    }
+})
+
+const upload = multer({
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.endsWith('.jpg') && !file.originalname.endsWith('.jpeg') && !file.originalname.endsWith('.png')) {
+            return cb('File must be a Image', undefined)
+        }
+        cb(undefined, true)
+    },
+    storage: storage
+})
+
+router.post('/upload', upload.single('upload'), async (req, res) => {
+    try {
+        var filename = process.env.BASEURL + '/api/getProfilePic/' + req.file.filename;
+        res.status(200).json({ error: false, filename })
+    } catch (e) {
+        res.status(400).json({ error: true, msg: String(e) })
+    }
+})
+
+router.get('/getProfilePic/:profilePicName', async (req, res) => {
+    try {
+        const file = fs.createReadStream(path.join(path.join(__dirname, '../public/profilePhotos'), req.params.profilePicName))
+        if (!file) {
+            throw "Image Does Not Exist"
+        }
+        res.setHeader('Content-Type', 'image/jpg');
+        file.pipe(res)
     } catch (e) {
         res.status(400).json({ error: true, msg: String(e) })
     }

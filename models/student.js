@@ -31,8 +31,10 @@ const studentSchema = new mongoose.Schema({
         }
     },
     photo: {
-        type: Buffer,
-        required: true
+        type: String,
+        unique: true,
+        required: true,
+        trim: true
     },
     degree: {
         type: String,
