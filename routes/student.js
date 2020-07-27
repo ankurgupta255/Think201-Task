@@ -51,7 +51,7 @@ router.get('/one/:email', async (req, res) => {
 router.post('/edit/:email', async (req, res) => {
     try {
         var student = await Student.findOne({ email: req.params.email })
-        if (!student){
+        if (!student) {
             throw "No such student exists"
         }
         const { name, email, phone, photo, degree } = req.body;
@@ -65,3 +65,5 @@ router.post('/edit/:email', async (req, res) => {
         res.status(400).json({ error: true, msg: String(e) })
     }
 })
+
+module.exports = router;
