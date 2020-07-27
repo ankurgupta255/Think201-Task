@@ -1,0 +1,14 @@
+{
+  "name": "my-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ankur Gupta",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
