@@ -1,3 +1,4 @@
+// Including all the dependencies
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -5,8 +6,15 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
+// Importing the Model
 const Student = require('../models/student');
 
+/*                                                  ROUTES                                                  */
+
+
+// @route   POST /api/student/add 
+// @desc    Adds a new student to the database
+// @access  Public 
 router.post('/add', async (req, res) => {
     try {
         const { name, email, phone, photo, degree } = req.body;
@@ -31,6 +39,9 @@ router.post('/add', async (req, res) => {
     }
 })
 
+// @route   GET /api/student/all 
+// @desc    Get the list of all students
+// @access  Public 
 router.get('/all', async (req, res) => {
     try {
         const students = await Student.find();
@@ -40,6 +51,9 @@ router.get('/all', async (req, res) => {
     }
 })
 
+// @route   GET /api/student/one/:email
+// @desc    Get Details of a single student by email
+// @access  Public 
 router.get('/one/:email', async (req, res) => {
     try {
         const student = await Student.findOne({ email: req.params.email })
@@ -52,6 +66,9 @@ router.get('/one/:email', async (req, res) => {
     }
 })
 
+// @route   POST /api/student/edit/:email 
+// @desc    Edit a student by email
+// @access  Public 
 router.post('/edit/:email', async (req, res) => {
     try {
         var student = await Student.findOne({ email: req.params.email })
@@ -71,6 +88,7 @@ router.post('/edit/:email', async (req, res) => {
     }
 })
 
+// Storage configuration for the uploaded images using multer. Images will be stored in public/profilePhotos
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../public/profilePhotos'))
@@ -83,6 +101,7 @@ const storage = multer.diskStorage({
     }
 })
 
+// Upload configuration for the photo. Images have to be less the 1,000,000 bytes in size and should end with .jpg, .jpeg, or .png
 const upload = multer({
     limits: {
         fileSize: 1000000
@@ -96,6 +115,9 @@ const upload = multer({
     storage: storage
 })
 
+// @route   POST /api/student/upload 
+// @desc    Uploads a photo to the server
+// @access  Public 
 router.post('/upload', upload.single('upload'), async (req, res) => {
     try {
         var filename = `${process.env.BASEURL}/api/student/getProfilePic/${req.file.filename}`;
@@ -105,6 +127,9 @@ router.post('/upload', upload.single('upload'), async (req, res) => {
     }
 })
 
+// @route   GET /api/student/getProfilePic/:profilePicName
+// @desc    Returns a profile pic from the given name
+// @access  Public 
 router.get('/getProfilePic/:profilePicName', async (req, res) => {
     try {
         const file = fs.createReadStream(path.join(path.join(__dirname, '../public/profilePhotos'), req.params.profilePicName))
