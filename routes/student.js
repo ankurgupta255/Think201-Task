@@ -98,7 +98,7 @@ const upload = multer({
 
 router.post('/upload', upload.single('upload'), async (req, res) => {
     try {
-        var filename = process.env.BASEURL + '/api/getProfilePic/' + req.file.filename;
+        var filename = process.env.BASEURL + '/api/student/getProfilePic/' + req.file.filename;
         res.status(200).json({ error: false, filename })
     } catch (e) {
         res.status(400).json({ error: true, msg: String(e) })

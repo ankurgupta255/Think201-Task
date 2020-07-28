@@ -1,6 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 
 class AllStudents extends React.Component {
     constructor() {
@@ -43,7 +42,7 @@ class AllStudents extends React.Component {
                                     <td>{item.name}</td>
                                     <td>{item.email}</td>
                                     <td>{item.phone}</td>
-                                    <td><img src={item.photo} /></td>
+                                    <td><img src={item.photo} alt={item.photo} /></td>
                                     <td>{item.degree}</td>
                                     <td><a href ={`/unique/${item.email}`}>Click Here</a></td>
                                 </tr>
