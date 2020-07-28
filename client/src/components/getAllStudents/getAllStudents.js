@@ -1,19 +1,56 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { Table, Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
-class AllStudents extends React.Component{
-    constructor(){
+class AllStudents extends React.Component {
+    constructor() {
         super()
-        this.state={
+        this.state = {
             list: []
         }
     }
-    componentDidMount(){
-
+    componentDidMount() {
+        fetch('/api/student/all', {
+            method: 'GET'
+        }).then(response => response.json()).then(data => {
+            console.log(data);
+            this.setState({ list: data.students })
+        })
     }
-    render(){
-        return(
+    handleChange = (email) =>{
+        return 
+    }
+    render() {
+        return (
             <div>
-                Hola
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Photo</th>
+                            <th>Degree</th>
+                            <th>View Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.list.map((item) => {
+                            return (
+                                <tr>
+                                    <td>1</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.phone}</td>
+                                    <td><img src={item.photo} /></td>
+                                    <td>{item.degree}</td>
+                                    <td><a href ={`/unique/${item.email}`}>Click Here</a></td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
             </div>
         )
     }

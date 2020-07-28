@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class UniqueStudent extends React.Component{
-    constructor(){
+class UniqueStudent extends React.Component {
+    constructor() {
         super()
-        this.state={
+        this.state = {
             name: '',
             email: '',
             phone: '',
@@ -11,13 +11,23 @@ class UniqueStudent extends React.Component{
             degree: ''
         }
     }
-    componentDidMount(){
-
+    componentDidMount() {
+        var data = window.location.href.substring(29);
+        fetch(`/api/student/one/${data}`, {
+            method: 'GET'
+        }).then(response => response.json()).then(data => {
+            const { name, phone, photo, degree, email } = data.student;
+            this.setState({ name, phone, photo, degree, email });
+        })
     }
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                Holaaaa
+                {this.state.email}
+                {this.state.name}
+                {this.state.phone}
+                {this.state.photo}
+                {this.state.degree}
             </div>
         )
     }

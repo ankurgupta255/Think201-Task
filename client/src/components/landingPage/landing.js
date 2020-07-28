@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Landing extends React.Component{
-    constructor(){
+class Landing extends React.Component {
+    constructor() {
         super()
-        this.state={
+        this.state = {
             name: '',
             email: '',
             phone: '',
@@ -24,8 +24,8 @@ class Landing extends React.Component{
     onSubmit = () => {
 
     }
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 Hi
             </div>
