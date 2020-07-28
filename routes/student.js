@@ -51,12 +51,12 @@ router.get('/all', async (req, res) => {
     }
 })
 
-// @route   GET /api/student/one/:email
-// @desc    Get Details of a single student by email
+// @route   GET /api/student/one/:id
+// @desc    Get Details of a single student by ObjectId
 // @access  Public 
-router.get('/one/:email', async (req, res) => {
+router.get('/one/:id', async (req, res) => {
     try {
-        const student = await Student.findOne({ email: req.params.email })
+        const student = await Student.findOne({ _id: req.params.id })
         if (!student) {
             throw "No such student exists"
         }
@@ -66,12 +66,12 @@ router.get('/one/:email', async (req, res) => {
     }
 })
 
-// @route   POST /api/student/edit/:email 
-// @desc    Edit a student by email
+// @route   POST /api/student/edit/:id 
+// @desc    Edit a student by ObjectId
 // @access  Public 
-router.post('/edit/:email', async (req, res) => {
+router.post('/edit/:id', async (req, res) => {
     try {
-        var student = await Student.findOne({ email: req.params.email })
+        var student = await Student.findOne({ _id: req.params.id })
         if (!student) {
             throw "No such student exists"
         }

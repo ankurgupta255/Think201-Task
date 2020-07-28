@@ -70,7 +70,7 @@ class AllStudents extends React.Component {
                                             <td>{item.phone}</td>
                                             <td><img src={item.photo} alt={item.photo} height="30px" /></td>
                                             <td>{item.degree}</td>
-                                            <td><a href={`/unique/${item.email}`}>Click Here</a></td>
+                                            <td><a href={`/unique/${item._id}`}>Click Here</a></td>
                                         </tr>
                                     )
                             })}

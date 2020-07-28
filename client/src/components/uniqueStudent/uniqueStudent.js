@@ -6,6 +6,7 @@ class UniqueStudent extends React.Component {
     constructor() {
         super()
         this.state = {
+            id: '',
             name: '',
             email: '',
             phone: '',
@@ -21,7 +22,7 @@ class UniqueStudent extends React.Component {
             method: 'GET'
         }).then(response => response.json()).then(data => {
             const { name, phone, photo, degree, email } = data.student;
-            this.setState({ name, phone, photo, degree, email });
+            this.setState({ name, phone, photo, degree, email, id: data.student._id });
         })
     }
     fetchUser = () => {
@@ -63,7 +64,7 @@ class UniqueStudent extends React.Component {
             });
     }
     onSubmit = () => {
-        fetch(`/api/student/edit/${this.state.email}`, {
+        fetch(`/api/student/edit/${this.state.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
