@@ -87,7 +87,7 @@ class UniqueStudent extends React.Component {
                         <h1 className="text-center">Student Details</h1>
                         <Row style={{ "padding-top": "10px" }}>
                             <Col sm={4}>
-                                <img src={this.state.photo} width="400px" />
+                                <img src={this.state.photo} width="100%" />
                             </Col>
                             <Col sm={8}>
                                 <h4>Name: {this.state.name}</h4>
