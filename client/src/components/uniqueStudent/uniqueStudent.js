@@ -87,7 +87,7 @@ class UniqueStudent extends React.Component {
                         <h1 className="text-center">Student Details</h1>
                         <Row style={{ "padding-top": "10px" }}>
                             <Col sm={4}>
-                                <img src={this.state.photo} width="100%" />
+                                <img src={this.state.photo} alt={this.state.photo} width="100%" />
                             </Col>
                             <Col sm={8}>
                                 <h4>Name: {this.state.name}</h4>
@@ -122,8 +122,17 @@ class UniqueStudent extends React.Component {
 
                             <Form.Group controlId="photo">
                                 <Form.Label>Photo Upload</Form.Label>
-                                <Form.Control onChange={this.onFileChange} type="file" required />
-                                <Button variant="primary" onClick={this.onUpload}>Upload File</Button>
+                                <Row>
+                                    <Col sm={6}>
+                                        <Form.Control onChange={this.onFileChange} type="file" required />
+                                    </Col>
+                                    <Col sm={6}>
+                                        <Button variant="primary" onClick={this.onUpload}>Upload Image</Button>
+                                    </Col>
+                                </Row>
+                                <Form.Text>
+                                    **Please ensure to upload image after selecting it
+                                </Form.Text>
                             </Form.Group>
 
                             <Form.Group controlId="degree">

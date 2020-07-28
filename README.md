@@ -15,6 +15,8 @@ Folder structure:
 
     * src/containers: Contains the app.js file which uses react-router-dom for the routing.
 
+* controllers: The Controller functions for all the routes.
+
 * models: The MongoDB models (Student Model in this case).
 
 * public/profilePhotos: The storage of pictures.  

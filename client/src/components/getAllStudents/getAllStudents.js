@@ -61,7 +61,7 @@ class AllStudents extends React.Component {
                         </thead>
                         <tbody>
                             {this.state.list.map((item) => {
-                                if (this.state.searchCategory == 'Name' && item.name.includes(this.state.searchText) || this.state.searchCategory == 'Email' && item.email.includes(this.state.searchText) || this.state.searchCategory == 'Phone' && item.phone.includes(this.state.searchText) || this.state.searchCategory == 'Degree' && item.degree.includes(this.state.searchText))
+                                if ((this.state.searchCategory === 'Name' && item.name.includes(this.state.searchText)) || (this.state.searchCategory === 'Email' && item.email.includes(this.state.searchText)) || (this.state.searchCategory === 'Phone' && item.phone.includes(this.state.searchText)) || (this.state.searchCategory === 'Degree' && item.degree.includes(this.state.searchText)))
                                     return (
                                         <tr>
                                             <td>1</td>
