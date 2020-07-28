@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Form } from 'react-bootstrap';
 
 class AllStudents extends React.Component {
     constructor() {
@@ -22,6 +22,9 @@ class AllStudents extends React.Component {
     render() {
         return (
             <div>
+                <Form>
+
+                </Form>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -42,7 +45,7 @@ class AllStudents extends React.Component {
                                     <td>{item.name}</td>
                                     <td>{item.email}</td>
                                     <td>{item.phone}</td>
-                                    <td><img src={item.photo} alt={item.photo} /></td>
+                                    <td><img src={item.photo} alt={item.photo} height="30px" /></td>
                                     <td>{item.degree}</td>
                                     <td><a href ={`/unique/${item.email}`}>Click Here</a></td>
                                 </tr>

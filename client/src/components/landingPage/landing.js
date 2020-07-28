@@ -40,9 +40,9 @@ class Landing extends React.Component {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: this.state.name, 
-                email: this.state.email, 
-                phone: this.state.phone, 
+                name: this.state.name,
+                email: this.state.email,
+                phone: this.state.phone,
                 photo: this.state.photo,
                 degree: this.state.degree
             })
