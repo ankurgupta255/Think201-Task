@@ -7,10 +7,14 @@ I made the Back-End using NodeJS and ExpressJS, Front-End using ReactJS and Reac
 
 Folder structure:
 
-client: The ReactJS app for the Front-End
+* client: The ReactJS app for the Front-End
 
-models: The MongoDB models
+    * src/components: This contains all the pages for the Front-End (3 in this case).
 
-public/profilePhotos: The storage of pictures
+    * src/containers: Contains the app.js file which uses react-router-dom for the routing.
 
-routes: The route file exists here
+* models: The MongoDB models
+
+* public/profilePhotos: The storage of pictures
+
+* routes: The route file exists here
