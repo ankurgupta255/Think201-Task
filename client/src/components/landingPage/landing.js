@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Form, Button } from 'react-bootstrap';
+import { Card, Form, Button, Row, Col } from 'react-bootstrap';
 const axios = require('axios');
 
 class Landing extends React.Component {
@@ -73,10 +73,18 @@ class Landing extends React.Component {
 
                         <Form.Group controlId="photo">
                             <Form.Label>Photo Upload</Form.Label>
-                            <Form.Control onChange={this.onFileChange} type="file" required />
-                            <Button variant="primary" onClick={this.onUpload}>Upload File</Button>
+                            <Row>
+                                <Col sm={3}>
+                                    <Form.Control onChange={this.onFileChange} type="file" required />
+                                </Col>
+                                <Col sm={3}>
+                                    <Button variant="primary" onClick={this.onUpload}>Upload Image</Button>
+                                </Col>
+                            </Row>
+                            <Form.Text>
+                                **Please ensure to upload image after selecting it
+                            </Form.Text>
                         </Form.Group>
-
                         <Form.Group controlId="degree">
                             <Form.Label>Degree</Form.Label>
                             <Form.Control onChange={this.onChange('degree')} type="text" value={this.state.degree} required />
