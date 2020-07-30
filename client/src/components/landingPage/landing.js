@@ -48,6 +48,7 @@ class Landing extends React.Component {
             })
         }).then(response => response.json()).then((data) => {
             data.error ? alert(data.msg) : alert('The Student Has been Added');
+            window.location.reload();
         })
     }
     render() {
@@ -89,7 +90,7 @@ class Landing extends React.Component {
                             <Form.Label>Degree</Form.Label>
                             <Form.Control onChange={this.onChange('degree')} type="text" value={this.state.degree} required />
                         </Form.Group>
-                        <Button variant="primary" onClick={this.onSubmit} type="submit">
+                        <Button variant="primary" onClick={this.onSubmit}>
                             Submit
                         </Button>
                     </Form>
